@@ -4,15 +4,13 @@ separate them with the wanted separator (or '-' if separator doesn't receive)
 and print the list.
 """
 
-from typing import Any
 
-
-def join(sep: Any() = '-', *tuple_of_lists: tuple) -> list or None:
-    """Receives tuple of lists, join them into one list and put the
+def join(sep: str = '-', tuple_of_lists: tuple or list = None) -> list or None:
+    """Receives tuple/list of lists, join them into one list and put the
     separator character to separate them.
     If there is no lists, the function return None.
     If there is no separate character, the function put '-' between lists.
-    :param tuple_of_lists: list of lists to join them into one
+    :param tuple_of_lists: list/tuple of lists to join them into one
     :param sep: separate character that will separate inside the new list
                 between each two different lists.
     :return: new list after join and separate lists.
@@ -36,10 +34,10 @@ def main_cup_of_join():
         lists.append(temp_str.split())
         temp_str = input("Enter A list. To finish, just press enter: ")
     separator = input("Enter A separator. If you don't want, just press enter: ")
-    if len(separator):
-        print(join(*lists, sep=separator))
+    if len(separator) != 0:
+        print(join(tuple_of_lists=lists, sep=separator))
     else:
-        print(join(*lists))
+        print(join(tuple_of_lists=lists))
 
 
 if __name__ == "__main__":
