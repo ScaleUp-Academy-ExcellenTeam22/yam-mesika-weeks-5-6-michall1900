@@ -9,7 +9,6 @@ otherwise it print that I have vinaigrette.
 
 from datetime import datetime, timedelta
 from random import randrange
-import time
 
 
 TIME_FORMAT = "%Y-%m-%d"
