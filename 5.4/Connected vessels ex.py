@@ -11,7 +11,7 @@ def generator_interleave(*iterables: list or str or tuple or dict or set):
         curr_index += 1
 
 
-def interleave(*iterables: list or str or tuple or dict or set) -> list:
+def interleave(*iterables: tuple) -> list:
     """Return a list of connected vessels (first cell of each iterable obj,
     then second and so on)
     :param iterables: iterables objects (list, tuple, string and so on)
@@ -27,7 +27,7 @@ def interleave(*iterables: list or str or tuple or dict or set) -> list:
 
 
 def main_connected_vessels():
-    print(interleave('abc', [1, 2, 3], ('!', '@', '#')))
+    print(interleave('abc', [1, 2, 3], ('!', '@', '#'), {'hey': 'blue'}))
     print([ret_val for ret_val in generator_interleave('abc', [1, 2, 3], ('!', '@', '#'))])
 
 
