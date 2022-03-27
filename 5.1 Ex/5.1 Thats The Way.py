@@ -19,7 +19,7 @@ def find_files_with_wanted_prefix(path: str, prefix: str) -> list:
 def main_that_is_the_way() -> None:
     """
     Searching at the 'images' directory all files whose prefix is 'deep' and print them.
-    :return: None
+    :return: None.
     """
     find_deep_at_images = partial(find_files_with_wanted_prefix,
                                   path=r"..\..\yam mesika\Notebooks\week05\images", prefix="deep")
