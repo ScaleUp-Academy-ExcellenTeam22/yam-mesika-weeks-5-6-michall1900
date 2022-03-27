@@ -1,34 +1,34 @@
-"""
-Calculate price for recipe's ingredients
-"""
+from functools import reduce
 
 
-def get_recipe_price(prices: dict, optionals: list = None, **gram_ingredients: dict) -> float or None:
-    """Receives dictionary when key its ingredients name's and item is their price for 100 g,
+def get_recipe_price(prices: dict, optionals: list = None, **gram_ingredients: float) -> float:
+    """
+    Receives dictionary when key its ingredient's names and item is their price for 100 g,
     list of optional ingredients that someone don't want to buy at all and dictionary with same keys as the first
     but it's items is how many grams do we need to buy.
-    If keys are not the same at both of dictionaries, return null. Otherwise, calculate and return the final price.
-    :param prices: Keys are ingredients names, items are their price for 100 gram
+    If there is key in prices dictionary that has no quantity at gram_ingredients, the function add its price as
+    it is.
+    Anyway, the function calculate and return the final shopping price for the recipe.
+    :param prices: Keys are ingredients names, items are their price for 100 gram.
     :param optionals: List of items (as keys) that we don't want to buy.
     :param gram_ingredients: Keys as prices dictionary and items as grams we need to buy.
-    :return: none when there is error, else, total price when
+    :return: Total price.
     """
-    if not prices.keys() == gram_ingredients.keys():
-        print("There are missing key/s at one of the dicts")
-        return None
-    final_price = 0
-    for key, item in prices.items():
-        if optionals is not None and key in optionals:
-            continue
-        final_price += item * gram_ingredients.get(key) / 100
-
-    return final_price
+    return reduce(lambda total_price, key: total_price + prices.get(key) * (gram_ingredients.get(key) or 100) / 100
+                  if not optionals or key not in optionals else total_price, prices, 0)
 
 
-def main_piece_of_cake():
-    # Just doing and printing some tests.
-    print(get_recipe_price({'chocolate': 18, 'milk': 8}, chocolate=200, milk=100))
-    print(get_recipe_price({'chocolate': 18, 'milk': 8}, ['milk'], chocolate=200, milk=100))
+def main_piece_of_cake() -> None:
+    """
+    Send prices for 100 g of ingredient, wanted quantity for recipe and ingredient we don't want to buy
+    and print the total shopping price.
+    :return: None.
+    """
+    (lambda prices, grams:
+     [print(get_recipe_price(prices, **grams)),
+      print(get_recipe_price(prices=prices, optionals=['milk'], **grams))])({'chocolate': 18, 'milk': 8},
+                                                                            dict({('chocolate', 200), ('milk', 100)}))
+    print(get_recipe_price({'rice': 5, 'chicken': 30, 'wine': 20}, rice=400, chicken=1000))
     print(get_recipe_price({}))
 
 
