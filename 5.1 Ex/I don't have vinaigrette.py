@@ -25,9 +25,9 @@ def is_date_in_week_day(date: datetime, day: int) -> bool:
     Check if the current date is on the wanted weak day.
     I got help from:
     https://www.delftstack.com/howto/python/python-datetime-day-of-week/
-    :param date: The wanted date to check its weak day
+    :param date: The wanted date to check its weak day.
     :param day: int (monday=0, sunday=6.). For check if the date is pointing on that day.
-    :return: true if week day of date same to the given day
+    :return: true if week day of date same to the given day.
     """
     return date.weekday() == day
 
