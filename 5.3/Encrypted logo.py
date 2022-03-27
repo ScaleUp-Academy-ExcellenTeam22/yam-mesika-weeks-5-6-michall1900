@@ -16,6 +16,11 @@ def find_encrypted_lines_generator(encrypted_binary_file: BinaryIO) -> str:
 
 
 def main_encrypted_logo() -> None:
+    """
+    Opens logo.jpg file that inside this directory in reading binary mode
+    and print all of the secrete lines inside it.
+    :return: None.
+    """
     with open("logo.jpg", 'rb') as my_file:
         for secrete_line in find_encrypted_lines_generator(my_file):
             print(secrete_line)
