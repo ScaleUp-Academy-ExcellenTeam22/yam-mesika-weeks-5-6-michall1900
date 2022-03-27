@@ -7,7 +7,7 @@ def find_encrypted_lines_generator(encrypted_binary_file: BinaryIO) -> str:
     Generator that return all secrete lines in the encrypted file.
     The meaning of secrete line is a line within the file that contains only lowercase
     letters, ending with ! and whose length is >=5.
-    :param encrypted_binary_file to find and decrypt secrete lines.
+    :param encrypted_binary_file - To find and decrypt secrete lines.
     :return: String of secrete lines.
     """
     for line in encrypted_binary_file:
