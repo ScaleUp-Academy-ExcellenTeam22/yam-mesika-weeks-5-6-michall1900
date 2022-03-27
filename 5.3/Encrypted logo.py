@@ -1,5 +1,5 @@
 from typing import BinaryIO
-import re
+from re import findall
 
 
 def find_encrypted_lines_generator(encrypted_binary_file: BinaryIO) -> str:
@@ -11,7 +11,7 @@ def find_encrypted_lines_generator(encrypted_binary_file: BinaryIO) -> str:
     :return: secrete lines
     """
     for line in encrypted_binary_file:
-        for match in re.findall("([a-z]{5}[a-z]*!)", line.decode(errors='ignore')):
+        for match in findall("([a-z]{5}[a-z]*!)", line.decode(errors='ignore')):
             yield match
 
 
