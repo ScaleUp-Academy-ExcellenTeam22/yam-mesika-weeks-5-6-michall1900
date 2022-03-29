@@ -5,7 +5,7 @@ from typing import Union
 
 def join(*lists: Union[abc.MutableSequence[list], list], sep: str = '-') -> list:
     """
-    Receives tuple of lists, join them into one list, and put the
+    Receives lists, join them into one list, and put the
     separator character to separate between them.
     If there are no lists, the function returns an empty one.
     If there is no separate character, the function put '-' between lists.
