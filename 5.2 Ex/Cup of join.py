@@ -1,7 +1,9 @@
+from collections import abc
 from functools import reduce
+from typing import Union
 
 
-def join(*tuple_of_lists: list, sep: str = '-') -> list:
+def join(*lists: Union[abc.MutableSequence[list], list], sep: str = '-') -> list:
     """
     Receives tuple of lists, join them into one list, and put the
     separator character to separate between them.
@@ -9,11 +11,11 @@ def join(*tuple_of_lists: list, sep: str = '-') -> list:
     If there is no separate character, the function put '-' between lists.
     I used this website:
     https://stackoverflow.com/questions/24116865/how-to-join-list-of-lists-with-separator-in-python
-    :param tuple_of_lists: Tuple of lists to join them into one.
+    :param lists: lists to join them into one.
     :param sep: Separate character to separate between every two different lists.
     :return: New list after join and separate lists.
     """
-    return reduce(lambda lst1, lst2: lst1 + ([sep] if len(lst1) != 0 else []) + lst2, tuple_of_lists, [])
+    return reduce(lambda lst1, lst2: lst1 + ([sep] if len(lst1) != 0 else []) + lst2, lists, [])
 
 
 def main_cup_of_join() -> None:
